@@ -9,8 +9,10 @@ from langchain_core.runnables import RunnablePassthrough
 load_dotenv()
 
 def load_rag_chain():
+    api_key = os.getenv("GOOGLE_API_KEY")
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/gemini-embedding-001"
+        model="models/gemini-embedding-001",
+        google_api_key=api_key
     )
     vectorstore = Chroma(
         persist_directory="./chroma_db",
@@ -35,9 +37,10 @@ Answer:""",
     )
 
     llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    temperature=0
-)
+        model="gemini-2.0-flash",
+        temperature=0,
+        google_api_key=api_key
+    )
 
     def format_docs(docs):
         return "\n\n".join(doc.page_content for doc in docs)
