@@ -9,4 +9,4 @@ streamlit==1.41.0
 python-dotenv==1.0.1
 pydantic==2.10.6
 langsmith==0.3.45
-zstandard==0.25.0
+zstandard==0.23.0
